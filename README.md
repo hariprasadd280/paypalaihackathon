@@ -1,66 +1,90 @@
 # PayBounty AI
 
-> An autonomous maintainer agent that audits pull requests, evaluates code quality/security, and dispatches instant PayPal micro-bounties to open-source contributors.
+> Autonomous open-source bounty evaluation and instant payouts powered by AI and the PayPal Developer Platform.
 
----
+PayBounty AI bridges the gap between open-source maintainers and global contributors. Reviewing community pull requests manually takes time, and issuing small payments across borders often involves tedious admin work or complex setup.
 
-## What It Does
-
-Open-source maintainers spend endless hours reviewing PRs, managing micro-tasks, and handling payouts across different platforms. Contributor friction is high, and waiting weeks for manual approvals kills community momentum.
-
-**PayBounty AI** automates this lifecycle:
-1. **Monitors GitHub Pull Requests** for open issues and incoming submissions.
-2. **Runs automated AI code quality and security checks** on the PR diff (evaluating security risks, test coverage, code style, and task complexity).
-3. **Calculates dynamic micro-bounties** based on actual code impact ($5 for minor bug/doc fixes, up to $50+ for complex features).
-4. **Triggers instant payouts** directly to the developer's email via PayPal’s Developer Sandbox (`/v1/payments/payouts` API) as soon as high-quality code gets merged.
-
----
-
-## Tech Stack & APIs Used
-
-- **Frontend:** Vanilla JS / HTML5 / Tailwind CSS
-- **Payments Engine:** PayPal Developer Platform (Sandbox Payouts API)
-- **AI Engine:** Code auditing & security inspection logic
-- **Developer Tools Used:** Postman (for testing payment endpoints), Render (hosting setup)
+PayBounty AI automates code reviews using LLMs and dispatches real-time micro-bounties directly to a developer’s PayPal account the moment their code meets quality and security standards.
 
 ---
 
 ## Key Features
 
-- **Autonomous Payment Dispatch:** No manual approval buttons needed once safety thresholds (score ≥ 8/10) are met.
-- **Fiat Payouts for Devs:** Uses PayPal directly so contributors don't need crypto wallets or complex wire setups.
-- **Live Terminal & Audit Log:** Clear, transparent audit trails showing exact prompt checks, safety scores, and raw PayPal JSON responses.
-- **Rejection Circuit Breakers:** Flags unsafe code patterns (like unhandled edge cases or hardcoded secrets) and rejects payout attempts automatically.
+* **Automated Code Auditing**: Analyzes submitted PR diffs for quality, potential security risks, and overall project impact.
+* **Dynamic Bounty Valuation**: Calculates fair payout rates based on code complexity, lines changed, and issue priority.
+* **Instant Fiat Payouts**: Connects directly to the **PayPal Payouts API** (Sandbox environment) to send funds straight to the contributor’s email address upon code acceptance.
+* **Real-time Agent Console**: Provides transparent logs of the AI's reasoning, test outputs, and JSON payloads for full auditability.
 
 ---
 
-## Getting Started / Local Setup
+## Tech Stack & Sponsor Tools
 
-No complex setup or build steps required. The dashboard runs directly in any web browser.
+* **Frontend**: HTML5, Tailwind CSS, JavaScript (ES6)
+* **Payment Processing**: PayPal Developer Platform (Sandbox API / Payouts Engine)
+* **AI Engine**: LLM-based code evaluation prompt architecture
+* **API Testing & Workflows**: Postman (for payload validation)
+* **Hosting**: Netlify / GitHub Pages
 
-1. **Clone the repo:**
-   ```bash
-   git clone [https://github.com/YOUR_USERNAME/paypalaihackathon.git](https://github.com/YOUR_USERNAME/paypalaihackathon.git)
-   cd paypalaihackathon
+---
 
-Open the application:
+## Getting Started & Local Setup
 
-Double-click index.html to open it in your browser, OR
+Because PayBounty AI is built as a lightweight, zero-dependency client application, running it locally requires no build steps or heavy node module installations.
 
-Run a basic static server:
+1. **Clone the Repository**
+```bash
+git clone https://github.com/YOUR_USERNAME/paypalaihackathon.git
+cd paypalaihackathon
 
-Bash
-npx serve .
-Configure Sandbox Credentials (Optional):
+```
 
-Click API Configuration in the top navigation bar.
 
-Enter your PayPal Sandbox Client ID and Client Secret to test live API calls against the Sandbox environment.
+2. **Open the Application**
+* Double-click `index.html` to open it directly in any modern browser (Chrome, Firefox, Safari, Edge).
+* *Alternatively*, serve it locally via Python:
+```bash
+python -m http.server 8000
 
-Demo Video & Hosted Link
-Live Hosted Demo: [Paste your Netlify or GitHub Pages link here]
+```
 
-Demonstration Video: [Paste your YouTube video link here]
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+Then open `http://localhost:8000` in your browser.
+
+
+
+---
+
+## PayPal Sandbox Testing Setup
+
+To test live API triggers inside the app:
+
+1. Open the application and navigate to the **API Credentials Config** tab in the top dashboard.
+2. Enter your PayPal Developer **Client ID** and **Client Secret** (from your [PayPal Developer Dashboard](https://developer.paypal.com/)).
+3. Toggle the target environment to **Sandbox**.
+4. Select any test Pull Request from the Bounty Board and click **Trigger Autonomous AI Audit & PayPal Payout**.
+
+---
+
+## How It Works
+
+```
+[ Contributor Submits PR ] 
+           │
+           ▼
+[ AI Code Review Engine ] ──(Fails Security/Quality)──► [ Rejection & Feedback ]
+           │
+     (Score >= 8/10)
+           │
+           ▼
+[ Dynamic Bounty Calculation ]
+           │
+           ▼
+[ PayPal Payouts API Call ] ──► [ Instant Fiat Delivered to Developer Email ]
+
+```
+
+---
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
